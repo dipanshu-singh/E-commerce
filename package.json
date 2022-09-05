@@ -1,0 +1,29 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "Simple mern E-Commerce site",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "*",
+    "config": "*",
+    "connect-flash": "*",
+    "ejs": "*",
+    "express": "*",
+    "express-async-errors": "*",
+    "express-session": "*",
+    "joi": "*",
+    "jsonwebtoken": "*",
+    "lodash": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "node-mailjet": "*",
+    "nodemon": "^2.0.19"
+  }
+}

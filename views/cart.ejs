@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./template/head'); %>
+</head>
+
+<% 
+  let $id = 0; 
+%>
+
+<body>
+    <div class="container pt-5">
+      <% if(!cart) { %>
+        <h3> Your Cart is Empty! <h3>
+      <% } else {%>
+        <div class="row">
+          <div class="col-sm-6">
+            <% cart.products.forEach(function(p){ %>
+              <div class="card">
+                <div class="card-body row">
+                  <div class="col-sm-5">
+                    <img src=<%= p.image %> class="card-img-top" alt="product image">
+                  </div>
+                  <div class="col-sm-7">
+                    <h5 class="card-title"><%= p.title %></h5>
+                    <h5> Quantity : <%= cart.quantity[$id] %> </h5>
+                    <h5> Price : <%= p.price %> </h5>
+                    <h5> Total Price : <%= (p.price)*(cart.quantity[$id]) %> </h5>
+                    <div class="d-flex">
+                      <form method="POST" action="/cart/add">
+                        <button type="submit" name = "productId" value="<%= p._id %>" class="me-2 btn btn-sm btn-success">+1</button>
+                      </form>
+                      <form method="POST" action="/cart/sub">
+                        <button type="submit" name = "productId" value="<%= p._id %>" class="me-2 btn btn-sm btn-warning" <%= cart.quantity[$id++] > 1 ? "" : "disabled" %>> -1 </button>
+                      </form>
+                      <form method="POST" action="/cart/delete">
+                        <button type="submit" name = "productId" value="<%= p._id %>" class="me-2 btn btn-sm btn-danger">Delete Item</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <h5 class="card-header">Cart Summary</h5>
+              <div class="card-body">
+                <h5 class="card-title">Total number of Items : <%= cart.count %> </h5>
+                <h5 class="card-title">Total Cart Price : <%= cart.totalPrice %></h5>
+                <p class="card-text">Online Payment Accepting soon...</p>
+                <a href="/" class="btn btn-primary">Go Home</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% } %>
+
+    </div>
+    <%- include('./template/footer'); %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
